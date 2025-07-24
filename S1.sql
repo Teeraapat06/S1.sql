@@ -1,92 +1,51 @@
-SELECT EmployeeID , FirstName , LastName
- FROM Employees
- SELECT *
+--ต้องการข้อมูลพนักงานทั้งหมด
+SELECT * FROM Employees
 
-FROM Employees
-WHERE City = 'London'
+--รหัสพนักงานชื่อนามสกุลพนักงานทุกคน
+SELECT EmployeeID,FirstName,LastName FROM Employees
 
-SELECT *
+--ต้องการข้อมูลพนักงานทั้งหมดจากตารางพนักงานที่อยู่ในลอนดอน
+SELECT * FROM Employees WHERE City = 'London'
 
-FROM Products
+--ต้องการข้อมูลรหัสพนักงาน ชื่อ-นามสกุลจากตารางพนักงานที่อยุ่ในลอนดอน
+SELECT * EmployeeID,FirstName,LastName FROM Employees WHERE City = 'London'
 
-WHERE UnitPrice BETWEEN 50 AND 100
-SELECT *
+--ต้องการข้อมูลเมือง,ประเทศจากตารางลูกค้า
+SELECT City,Country FROM Customers
 
-FROM Customers
+SELECT DISTINCT City,Country FROM Customers
 
-WHERE Country IN ('Brazil','Argentina','Mexico');
-SELECT *
+SELECT * FROM Products WHERE Unitprice >200
 
-FROM Employees
+SELECT * FROM Customers WHERE City='London' OR City='Vancouver'
+SELECT * FROM Customers WHERE Country ='USA' OR City='Vancouver' 
+SELECT * FROM Products WHERE UnitsInStock<20 OR UnitsInStock<=50
 
-WHERE FirstName LIKE 'N%'
-SELECT *
 
-FROM Employees
+SELECT * FROM Products WHERE UnitPrice >=50 AND UnitsInStock <20
+SELECT * FROM Products WHERE UnitPrice >= 50 AND UnitPrice <= 100
 
-WHERE FirstName LIKE '_ _ _ _ _'
-SELECT ProductID,ProductName,UnitPrice
+SELECT * FROM Products WHERE UnitPrice BETWEEN 50 AND 100
 
-FROM Products
+SELECT * FROM Customers WHERE Country IN ('Brazil','Argentina','Mexico')
+SELECT * FROM Customers WHERE Country = 'Brazil',Country = 'Argentina' , Country = 'Mexico'
 
-ORDER BY UnitPrice DESC
+--ค้นหาลูกค้าขึ้นต้นด้วย N
+SELECT * FROM employees WHERE FirstName LIKE '%N'
 
-SELECT CompanyName, ContactName
+SELECT * FROM Customers WHERE CompanyName LIKE 'A%'
 
-FROM Customers
+SELECT * FROM Customers WHERE CompanyName LIKE '%Y'
 
-ORDER BY ContactName ASC
+SELECT firstname,lastname FROM Employees WHERE FirstName LIKE '%AN%'
 
-SELECT EmployeeID, FirstName, LastName
-FROM Employees;
-GO
+//ต้องการชื่อลูกค้าที่มีตัวอักษร 5 ตัว
+SELECT * FROM Employees WHERE FirstName LIKE '_____'
+SELECT  * FROM Employees WHERE FirstName LIKE '_a___'
 
-SELECT *
-FROM Employees
-WHERE City = 'London';
-GO
+SELECT ProductID,ProductName,UnitPrice FROM Products ORDER BY Unitprice DESC
+SELECT CompanyName,ContactName FROM Customers ORDER BY UnitPrice ASC
 
-SELECT *
-FROM Products
-WHERE UnitPrice BETWEEN 50 AND 100;
-GO
+SELECT TOP 10 ProductName,UnitPrice FROM Products ORDER BY UnitsInStock DESC
 
-SELECT *
-FROM Customers
-WHERE Country IN ('Brazil','Argentina','Mexico');
-GO
-
-SELECT *
-FROM Employees
-WHERE FirstName LIKE 'N%';
-GO
-
-SELECT *
-FROM Employees
-WHERE FirstName LIKE '___'; 
-GO
-
-SELECT ProductID, ProductName, UnitPrice
-FROM Products
-ORDER BY UnitPrice DESC;
-GO
-
-SELECT CompanyName, ContactName
-FROM Customers
-ORDER BY ContactName ASC;
-GO
-
-SELECT FirstName, LastName
-FROM Employees
-WHERE FirstName LIKE '%an%';
-GO
-
-SELECT CompanyName
-FROM Customers
-WHERE CompanyName LIKE '_A%';
-GO
-
-SELECT ProductName, UnitPrice, UnitsInStock
-FROM Products
-ORDER BY UnitsInStock DESC;
-GO
+SELECT CategoryID,ProductName,UnitPrice FROM Products ORDER BY CategoryID ASC , UnitPrice DESC
